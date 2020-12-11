@@ -12,7 +12,7 @@ const NewNote = (props) => {
   };
 
   return (
-    <form>
+    <form onSubmit={addNote}>
       <input name="note" />
       <button type="submit">add</button>
     </form>

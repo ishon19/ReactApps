@@ -11,7 +11,7 @@ const initialState = [
   },
 ];
 
-const noteReducer = (state = initialState, action) => {
+const noteReducer = (state = [], action) => {
   switch (action.type) {
     case "NEW_NOTE":
       return [...state, action.data];
@@ -23,9 +23,18 @@ const noteReducer = (state = initialState, action) => {
         important: !noteToChange.important,
       };
       return state.map((note) => (note.id !== id ? note : changedNote));
+    case "INIT_NOTES":
+      return action.data;
     default:
       return state;
   }
+};
+
+export const initialNotes = (notes) => {
+  return {
+    type: "INIT_NOTES",
+    data: notes,
+  };
 };
 
 const generatedId = () => {
